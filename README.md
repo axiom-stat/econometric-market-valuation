@@ -35,7 +35,10 @@ By capping the model space at the 95th percentile ($28.5\text{M}$ RUB), the trai
 ### 2. Resolving Structural Multicollinearity via VIF
 A naive regression including total area, living area, and kitchen area simultaneously causes extreme multicollinearity ($\text{VIF} > 28$) due to internal spatial accounting constraints
 Rather than dropping sub-areas and losing valuable layout signals, the feature space was restructured into scale-invariant proportions:
-$$\text{living\_percent} = \frac{\text{living\_area}}{\text{total\_area}} \times 100, \quad \text{kitchen\_percent} = \frac{\text{kitchen\_area}}{\text{total\_area}} \times 100$$
+```python
+living_percent = (living_area / total_area) * 100
+kitchen_percent = (kitchen_area / total_area) * 100
+```
 This structural reformulation brought all VIF scores below critical thresholds, eliminating rank deficiency while preserving complete spatial layout information
 
 ### 3. Model Progression & Parsimony Metrics
@@ -104,7 +107,10 @@ jupyter lab
 ### 2. Устранение мультиколлинеарности площадей через VIF
 Включение в модель общей, жилой площади и кухни одновременно приводило к критическому значению VIF ($> 28$), так как сумма помещений жестко ограничена общим метражом
 Вместо выбрасывания данных архитектура признаков была реорганизована в относительные доли:
-$$\text{living\_percent} = \frac{\text{living\_area}}{\text{total\_area}} \times 100, \quad \text{kitchen\_percent} = \frac{\text{kitchen\_area}}{\text{total\_area}} \times 100$$
+```python
+living_percent = (living_area / total_area) * 100
+kitchen_percent = (kitchen_area / total_area) * 100
+```
 Такая параметризация вернула все показатели VIF в безопасную зону и сохранила ценную информацию о планировке без риска вырождения матриц
 
 ### 3. Эволюция спецификаций и информационные критерии
